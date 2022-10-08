@@ -1,3 +1,5 @@
 perceptron visualization/dataset/
 perceptron visualization/mnist/
 GAN/
+test.ipynb
+neural style transfer/nst.py
