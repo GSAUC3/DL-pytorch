@@ -3,3 +3,6 @@ perceptron visualization/mnist/
 GAN/
 test.ipynb
 neural style transfer/nst.py
+*.c
+*.cpp
+*.exe

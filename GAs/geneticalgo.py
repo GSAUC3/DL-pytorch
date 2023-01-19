@@ -12,7 +12,7 @@ import random
 TARGET='to be or not to be'
 
 
-class individual:
+class Individual:
     def __init__(self,gene) -> None:
         self.len=len(TARGET)
         self.fitness=0
@@ -41,7 +41,7 @@ def selection(p,mr=0.1):
         parent1 = random.choice(p[:20])
         parent2 = random.choice(p[:20])
         # crossover
-        child = individual([parent1.gene[i] if random.random()<0.5 else parent2.gene[i] for i in range(len(TARGET))])
+        child = Individual([parent1.gene[i] if random.random()<0.5 else parent2.gene[i] for i in range(len(TARGET))])
         # mutation
         child.gene = [random.choice(DNA) if random.random()<mr else i for i in child.gene] 
         new_gen.append(child)
@@ -51,25 +51,27 @@ def selection(p,mr=0.1):
 def main():
     # global DNA
     # create initial population
-    Pi = [individual(random.sample(DNA,len(TARGET))) for _ in range(100)]
+    Pi = [Individual(random.sample(DNA,len(TARGET))) for _ in range(100)]
     b = 1
     print('{:>5} {:^50} {:>5}'.format('Generation','Best Offspring','Fitness'))
     while b:
-        # calculate fitnesses of each individual
+        # calculate fitnesses of each Individual
         fitnesses=list(map(fitness,Pi))
-        # store the fitnesses in each individual instance
+        # store the fitnesses in each Individual instance
         for i,x in enumerate(Pi):
             x.fitness = fitnesses[i]
-        # sort individuals based on their fitnesses
+        # sort Individuals based on their fitnesses
         Pi = sorted(Pi,key=lambda i:i.fitness,reverse=True)
         # return if correct fitness accquired
         print('{:>5} {:^50} {:>5}'.format(b,str(Pi[0]),Pi[0].fitness))
         if Pi[0].fitness >= len(TARGET)*10 + len(TARGET):
-            print('FOUND it 3itch')
+            print('FOUND it!!')
             break
         new_gen = selection(Pi) # start selection process
         Pi = new_gen
         b+=1
         if b>999:break
+
+        
 main()
 
