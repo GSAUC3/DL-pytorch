@@ -7,3 +7,4 @@ neural style transfer/nst.py
 *.cpp
 *.exe
 *.png
+*.csv
